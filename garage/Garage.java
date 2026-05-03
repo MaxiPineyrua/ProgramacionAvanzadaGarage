@@ -52,27 +52,38 @@ public class Garage {
   }
 
   // Registrar ingreso de un vehículo al garage.
-  public boolean ingresarVehiculo(Vehiculo vehiculo) {
-    // Fijarse si hay lugar
-    if (hayEspacio(vehiculo)) {
-      vehiculos.add(vehiculo); // Se agrega a la lista
-      return true;
-    } else {
-      return false; // No hay espacio
+  public void ingresarVehiculo(Vehiculo vehiculo)
+      throws GarageLlenoException, PatenteDuplicadaException {
+    // Validamos patente duplicada
+    for (Vehiculo v : vehiculos) {
+      if (v.getPatente().equalsIgnoreCase(vehiculo.getPatente())) {
+        throw new PatenteDuplicadaException(
+            "La patente ingresada: " + vehiculo.getPatente() + " ya está en el garage.");
+      }
     }
+    // Validar espacio
+    if (!hayEspacio(vehiculo)) {
+      throw new GarageLlenoException("No hay espacio suficiente para ingresar el vehículo. ");
+    }
+    // Si pasa las validaciones, agregamos el vehículo
+    vehiculos.add(vehiculo);
+    System.out.println("Vehículo agregado correctamente.");
+
   }
 
   // Registrar salida de un vehículo x patente.
-  public Vehiculo retirarVehiculo(String patente) {
+  public Vehiculo retirarVehiculo(String patente)
+      throws VehiculoNoEncontradoException {
     // Recorre la lista de vehículos
     for (Vehiculo v : vehiculos) {
-      // Comparamos patente
       if (v.getPatente().equalsIgnoreCase(patente)) {
-        vehiculos.remove(v); // Elimina el vehículo
-        return v; // Devuelve el vehículo encontrado.
+        vehiculos.remove(v); // Se elimina el vehículo
+        System.out.println("Vehículo retirado correctamente.");
+        return v; // Se devuelve el vehículo retirado
       }
     }
-    return null; // Si no se encuentra devuelve null
+    // Si no se encuentra el vehículo utilizamos la exception
+    throw new VehiculoNoEncontradoException("No se encontró el vehículo con la patente: " + patente);
   }
 
   // Mostrar vehículos estacionados
