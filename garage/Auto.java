@@ -3,7 +3,8 @@ package garage;
 // Auto extiende (hereda) de Vehiculo
 public class Auto extends Vehiculo {
   // Constructor (uso super para llamar a la clase padre)
-  public Auto(String patente, String marca, String modelo, int horasEstimadas) {
+  public Auto(String patente, String marca, String modelo, int horasEstimadas)
+      throws HorasInvalidasException {
     super(patente, marca, modelo, horasEstimadas);
   }
 

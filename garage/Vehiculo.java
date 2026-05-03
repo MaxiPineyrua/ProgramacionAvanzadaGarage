@@ -8,7 +8,11 @@ public abstract class Vehiculo {
   protected int horasEstimadas;
 
   // constructor
-  public Vehiculo(String patente, String marca, String modelo, int horasEstimadas) {
+  public Vehiculo(String patente, String marca, String modelo, int horasEstimadas) throws HorasInvalidasException {
+    // Validacion horas
+    if (horasEstimadas <= 0) {
+      throw new HorasInvalidasException("Las horas deben ser mayor a 0.");
+    }
     this.patente = patente;
     this.marca = marca;
     this.modelo = modelo;
