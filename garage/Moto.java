@@ -1,6 +1,6 @@
 package garage;
 
-//Moto extendes (hereda) de Vehiculo
+//Moto extiende (hereda) de Vehiculo
 public class Moto extends Vehiculo {
   // Constructor (uso super para llamar a la clase padre)
   public Moto(String patente, String marca, String modelo, int horasEstimadas)
