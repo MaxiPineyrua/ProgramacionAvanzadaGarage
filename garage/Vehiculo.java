@@ -1,7 +1,7 @@
 package garage;
 
 //Abstract porque no existe un vehículo genérico.
-public abstract class Vehiculo {
+public abstract class Vehiculo implements Calculable {
   protected String patente; // protected para que las subclases accedan.
   protected String marca;
   protected String modelo;

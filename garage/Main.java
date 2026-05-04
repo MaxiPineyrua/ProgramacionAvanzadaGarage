@@ -35,12 +35,29 @@ public class Main {
         case 1:
           System.out.println("Registrar Ingreso");
           try {
-            System.out.println("Tipo de vehículo?:");
-            System.out.println("1- Moto");
-            System.out.println("2- Auto");
-            System.out.println("3- Camioneta");
-            int tipo = scanner.nextInt();
-            scanner.nextLine();
+            int tipo = 0;
+            boolean tipoValido = false;
+
+            while (!tipoValido) {
+              try {
+                System.out.println("Tipo de vehículo?:");
+                System.out.println("1- Moto");
+                System.out.println("2- Auto");
+                System.out.println("3- Camion");
+                tipo = scanner.nextInt();
+                scanner.nextLine();
+
+                // Validamos antes de crear el vehiculo
+                if (tipo < 1 || tipo > 3) {
+                  System.out.println("Tipo de vehículo inválido. Intente nuevamente.");
+                } else {
+                  tipoValido = true;
+                }
+              } catch (Exception e) {
+                System.out.println("Ingrese un número válido.");
+                scanner.nextLine(); // Limpiar el buffer
+              }
+            }
 
             System.out.println("Ingrese la patente: ");
             String patente = scanner.nextLine();
@@ -51,9 +68,30 @@ public class Main {
             System.out.println("Ingrese el modelo: ");
             String modelo = scanner.nextLine();
 
-            System.out.println("Ingrese horas estimadas: ");
-            int horas = scanner.nextInt();
-            scanner.nextLine();
+            int horas = 0;
+            boolean horasValidas = false;
+            while (!horasValidas) {
+              try {
+                System.out.println("Ingrese horas estimadas: ");
+                horas = scanner.nextInt();
+                scanner.nextLine();
+                // Validamos antes de crear el vehiculo
+                if (horas <= 0) {
+                  throw new HorasInvalidasException("Las horas deben ser mayores a 0.");
+                }
+                horasValidas = true; // Si está bien, sale del loop
+              } catch (HorasInvalidasException e) {
+                System.out.println("Error: " + e.getMessage());
+              } catch (Exception e) {
+                System.out.println("Ingrese un número válido.");
+                scanner.nextLine(); // Limpiar el buffer
+              }
+            }
+
+            if (patente.isEmpty() || marca.isEmpty() || modelo.isEmpty()) {
+              System.out.println("Los campos no pueden estar vacíos. ");
+              break;
+            }
 
             Vehiculo vehiculo = null;
             // Crear vehículo según tipo
@@ -106,16 +144,19 @@ public class Main {
         // -------- Lista de Vehículos --------
         case 3:
           System.out.println("Lista de Vehículos");
+          garage.listaVehiculos();
           break;
 
         // -------- Estado del Garage --------
         case 4:
           System.out.println("Estado del Garage");
+          garage.mostrarEstado();
           break;
 
         // -------- Reportes --------
         case 5:
           System.out.println("Reportes");
+          garage.mostrarReporte();
           break;
 
         // -------- Salir --------
