@@ -50,3 +50,36 @@ El sistema implementa las siguientes excepciones:
 - `PatenteDuplicadaException`
 - `VehiculoNoEncontradoException`
 - `HorasInvalidasException`
+
+---
+
+## 🖥️ Ejecución
+
+- Clonar el repositorio:
+- git clone <URL_DEL_REPOSITORIO>
+- Abrir el proyecto en un IDE
+- Ejecutar el archivo Main.java
+
+---
+
+## 📊 Estructura del proyecto
+- `Vehiculo.java` → Clase abstracta base
+- `Moto.java`, `Auto.java`, `Camion.java` → Subclases
+- `Garage.java` → Lógica principal del sistema
+- `Main.java` → Interfaz por consola
+- `Calculable.java` → Interfaz
+- Excepciones personalizadas.
+
+---
+
+## 📈 Mejoras implementadas
+
+- Validación de tipo de vehículo con reintento
+- Validación de horas ingresadas
+- Manejo de errores en entrada de datos
+- Validación de campos vacíos
+
+---
+
+👨‍💻 Autor
+Walter Maximiliano Piñeyrúa
