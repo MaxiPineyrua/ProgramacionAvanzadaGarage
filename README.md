@@ -81,5 +81,5 @@ El sistema implementa las siguientes excepciones:
 
 ---
 
-👨‍💻 Autor
+## 👨‍💻 Autor
 Walter Maximiliano Piñeyrúa
